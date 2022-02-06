@@ -9,7 +9,7 @@ public class Server {
 	private Socket socket;
 	private ServerSocket serverSocket;
 	private InputStreamReader iStream;
-	private DataOutputStream oStream;
+	private PrintWriter oStream;
 
 	private BigInteger bSecret = new BigInteger("12077");
 	private BigInteger g = new BigInteger("1907");
@@ -30,7 +30,7 @@ public class Server {
 		
 		BufferedReader bf = new BufferedReader(iStream);
 
-		oStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+		oStream = new PrintWriter(socket.getOutputStream());
 
 		T_b = DiffieHellman.calculateDiffieHellmanValue(g, bSecret, p);
 
@@ -44,7 +44,8 @@ public class Server {
 		System.out.println("?");
 		T_a = new BigInteger(inputBuf);
 		DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
-		oStream.writeChars(T_b.toString());
+		oStream.write(T_b.toString());
+		oStream.flush();
 		
 		System.out.println("Awaiting client to close connection...");
 		

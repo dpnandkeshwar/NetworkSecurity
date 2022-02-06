@@ -7,7 +7,7 @@ import java.net.*;
 public class Client {
 
 	private Socket socket;
-	private DataOutputStream oStream;
+	private PrintWriter oStream;
 	private InputStreamReader iStream;
 	private InputStreamReader socketReader;
 
@@ -21,7 +21,7 @@ public class Client {
 	public Client(String ipAddress, int port) throws UnknownHostException, IOException {
 		socket = new Socket(ipAddress, port);
 		System.out.println("Connected to " + ipAddress);
-		oStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+		oStream = new PrintWriter(socket.getOutputStream());
 		iStream = new InputStreamReader(new BufferedInputStream(System.in));
 		socketReader = new InputStreamReader(new BufferedInputStream(socket.getInputStream()));
 		
@@ -34,7 +34,8 @@ public class Client {
 
 		System.out.println("Alice's Calculation: " + T_a.toString());
 
-		oStream.writeChars(T_a.toString());
+		oStream.write(T_a.toString());
+		oStream.flush();
 		
 		System.out.println("Waiting for Bob to respond with his value...");
 		
@@ -50,7 +51,8 @@ public class Client {
 		
 		System.out.println("Calculated Diffie Hellman Shared Key: " + DFValue.toString());
 		
-		oStream.writeChars("QUIT");
+		oStream.write("QUIT");
+		oStream.flush();
 		
 		try {
 			socket.close();
