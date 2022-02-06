@@ -44,7 +44,7 @@ public class Server {
 		System.out.println("?");
 		T_a = new BigInteger(inputBuf);
 		DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
-		oStream.write(T_b.toString());
+		oStream.println(T_b.toString());
 		oStream.flush();
 		
 		System.out.println("Awaiting client to close connection...");

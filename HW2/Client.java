@@ -34,7 +34,7 @@ public class Client {
 
 		System.out.println("Alice's Calculation: " + T_a.toString());
 
-		oStream.write(T_a.toString());
+		oStream.println(T_a.toString());
 		oStream.flush();
 		
 		System.out.println("Waiting for Bob to respond with his value...");
@@ -51,7 +51,7 @@ public class Client {
 		
 		System.out.println("Calculated Diffie Hellman Shared Key: " + DFValue.toString());
 		
-		oStream.write("QUIT");
+		oStream.println("QUIT");
 		oStream.flush();
 		
 		try {
