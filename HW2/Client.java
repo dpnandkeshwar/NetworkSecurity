@@ -43,7 +43,7 @@ public class Client {
 		T_b = new BigInteger(socketInBuf);
 		DFValue = efficientExponentiation.calculate(T_b, aSecret, p);
 		
-		System.out.println("Diffie Hellman value calculated. Type QUIT to exit this connection");
+		System.out.println("Diffie Hellman value calculated for Alice. Type QUIT to exit this connection");
 		
 		while(!systemInBuf.equals("QUIT"))
 			systemInBuf = inReader.readLine();

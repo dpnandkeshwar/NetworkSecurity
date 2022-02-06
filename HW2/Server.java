@@ -43,7 +43,7 @@ public class Server {
 		inputBuf = bf.readLine();
 		T_a = new BigInteger(inputBuf);
 		DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
-		System.out.println("Diffie Hellman value calculated. Type QUIT to exit this connection");
+		System.out.println("Diffie Hellman value calculated for Bob");
 
 		oStream.println(T_b.toString());
 		oStream.flush();
@@ -52,7 +52,7 @@ public class Server {
 		
 		while(!bf.readLine().equals("QUIT"))
 			
-		Thread.sleep(2000);
+		System.out.println("Calculated Diffie Hellman Shared Key: " + DFValue.toString());
 
 		try {
 			socket.close();
