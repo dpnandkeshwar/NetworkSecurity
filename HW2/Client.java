@@ -36,6 +36,7 @@ public class Client {
 		System.out.println("Waiting for Bob to respond with his value...");
 
 		socketInBuf = iStream.readUTF();
+		System.out.println("?");
 		T_b = new BigInteger(socketInBuf);
 		DFValue = efficientExponentiation.calculate(T_b, aSecret, p);
 		

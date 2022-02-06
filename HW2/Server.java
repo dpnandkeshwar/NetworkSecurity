@@ -39,6 +39,7 @@ public class Server {
 		System.out.println("Waiting for Alice to respond with her value...");
 
 		inputBuf = iStream.readUTF();
+		System.out.println("?");
 		T_a = new BigInteger(inputBuf);
 		DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
 		oStream.writeChars(T_b.toString());
