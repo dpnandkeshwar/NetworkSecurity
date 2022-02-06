@@ -21,7 +21,7 @@ public class Client {
 		socket = new Socket(ipAddress, port);
 		System.out.println("Connected to " + ipAddress);
 		oStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-		iStream = new DataInputStream(System.in);
+		iStream = new DataInputStream(new BufferedInputStream(System.in));
 		
 		String inputBuf = "";
 		T_a = DiffieHellman.calculateDiffieHellmanValue(g, aSecret, p);
@@ -29,7 +29,7 @@ public class Client {
 		System.out.println("Alice's Calculation: " + T_a.toString());
 		
 		while(!inputBuf.equals("QUIT")) {
-			inputBuf = iStream.readUTF();
+			inputBuf = iStream.readLine();
 			T_b = new BigInteger(inputBuf);
 			DFValue = efficientExponentiation.calculate(T_b, aSecret, p);
 			oStream.writeChars(T_a.toString());
