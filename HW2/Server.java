@@ -41,9 +41,10 @@ public class Server {
 		System.out.println("Waiting for Alice to respond with her value...");
 		
 		inputBuf = bf.readLine();
-		System.out.println("?");
 		T_a = new BigInteger(inputBuf);
 		DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
+		System.out.println("Diffie Hellman value calculated. Type QUIT to exit this connection");
+
 		oStream.println(T_b.toString());
 		oStream.flush();
 		
