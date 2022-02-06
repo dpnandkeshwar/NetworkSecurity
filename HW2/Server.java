@@ -39,8 +39,8 @@ public class Server {
 		String inputBuf = "";
 		
 		while(!inputBuf.equals("QUIT")) {
-			String inputFromClient = iStream.readUTF();
-			T_a = new BigInteger(inputFromClient);
+			inputBuf = iStream.readUTF();
+			T_a = new BigInteger(inputBuf);
 			DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
 			oStream.writeChars(T_b.toString());
 		}

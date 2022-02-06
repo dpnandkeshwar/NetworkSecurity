@@ -29,8 +29,8 @@ public class Client {
 		System.out.println("Alice's Calculation: " + T_a.toString());
 		
 		while(!inputBuf.equals("QUIT")) {
-			String inputFromServer = iStream.readUTF();
-			T_b = new BigInteger(inputFromServer);
+			inputBuf = iStream.readUTF();
+			T_b = new BigInteger(inputBuf);
 			DFValue = efficientExponentiation.calculate(T_b, aSecret, p);
 			oStream.writeChars(T_a.toString());
 		}
