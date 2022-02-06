@@ -8,7 +8,7 @@ public class Server {
 
 	private Socket socket;
 	private ServerSocket serverSocket;
-	private DataInputStream iStream;
+	private InputStreamReader iStream;
 	private DataOutputStream oStream;
 
 	private BigInteger bSecret = new BigInteger("12077");
@@ -26,7 +26,9 @@ public class Server {
 		socket = serverSocket.accept();
 		System.out.println("Client accepted!");
 
-		iStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+		iStream = new InputStreamReader(new BufferedInputStream(socket.getInputStream()));
+		
+		BufferedReader bf = new BufferedReader(iStream);
 
 		oStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
@@ -37,8 +39,8 @@ public class Server {
 		String inputBuf = "";
 		
 		System.out.println("Waiting for Alice to respond with her value...");
-
-		inputBuf = iStream.readUTF();
+		
+		inputBuf = bf.readLine();
 		System.out.println("?");
 		T_a = new BigInteger(inputBuf);
 		DFValue = efficientExponentiation.calculate(T_a, bSecret, p);
@@ -46,7 +48,7 @@ public class Server {
 		
 		System.out.println("Awaiting client to close connection...");
 		
-		while(!iStream.readUTF().equals("QUIT"))
+		while(!bf.readLine().equals("QUIT"))
 			
 		Thread.sleep(2000);
 

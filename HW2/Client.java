@@ -8,8 +8,8 @@ public class Client {
 
 	private Socket socket;
 	private DataOutputStream oStream;
-	private DataInputStream iStream;
-	private DataInputStream socketReader;
+	private InputStreamReader iStream;
+	private InputStreamReader socketReader;
 
 	private BigInteger aSecret = new BigInteger("160031");
 	private BigInteger g = new BigInteger("1907");
@@ -22,8 +22,11 @@ public class Client {
 		socket = new Socket(ipAddress, port);
 		System.out.println("Connected to " + ipAddress);
 		oStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-		iStream = new DataInputStream(new BufferedInputStream(System.in));
-		socketReader = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+		iStream = new InputStreamReader(new BufferedInputStream(System.in));
+		socketReader = new InputStreamReader(new BufferedInputStream(socket.getInputStream()));
+		
+		BufferedReader inReader = new BufferedReader(iStream);
+		BufferedReader sReader = new BufferedReader(socketReader);
 
 		String systemInBuf = "";
 		String socketInBuf = "";
@@ -34,8 +37,8 @@ public class Client {
 		oStream.writeChars(T_a.toString());
 		
 		System.out.println("Waiting for Bob to respond with his value...");
-
-		socketInBuf = iStream.readUTF();
+		
+		socketInBuf = sReader.readLine();
 		System.out.println("?");
 		T_b = new BigInteger(socketInBuf);
 		DFValue = efficientExponentiation.calculate(T_b, aSecret, p);
@@ -43,7 +46,7 @@ public class Client {
 		System.out.println("Diffie Hellman value calculated. Type QUIT to exit this connection");
 		
 		while(!systemInBuf.equals("QUIT"))
-			systemInBuf = iStream.readUTF();
+			systemInBuf = inReader.readLine();
 		
 		System.out.println("Calculated Diffie Hellman Shared Key: " + DFValue.toString());
 		
