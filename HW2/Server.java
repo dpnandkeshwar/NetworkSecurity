@@ -50,10 +50,13 @@ public class Server {
 		
 		System.out.println("Awaiting client to close connection...");
 		
-		while(!bf.readLine().equals("QUIT"))
-			
-		System.out.println("Calculated Diffie Hellman Shared Key: " + DFValue.toString());
-
+		while(true) {
+			if(bf.readLine().equals("QUIT")) {
+				System.out.println("Calculated Diffie Hellman Shared Key: " + DFValue.toString());
+				break;
+			}
+		}
+		
 		try {
 			socket.close();
 			serverSocket.close();
