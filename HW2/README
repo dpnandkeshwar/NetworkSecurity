@@ -1,0 +1,4 @@
+To run my program, first run the Server.java from command line. Then run Client.java in a separate command line. 
+Make sure that all the java files are compiled by using "javac *.java". I was having some issues getting the 
+files to work from inside the directory, so you may have to run them from outside the directory like such:
+"java HW2/Server.java". The output will appear in both command lines. 
