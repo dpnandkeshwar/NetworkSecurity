@@ -1,0 +1,14 @@
+- The Needham Schroeder protocol is encapsulated by the classes "Bob.java", "KDC.java", and "Alice.java"
+
+- The reflection attack with ECB is shown encapsulated by the classes "MultithreadedSocketServer.java", "Trudy.java", and
+  "Trudy2.java". "MultithreadedSocketServer.java" contains another class "BobReflectionAttack" that runs the server code.
+  
+- The reflection attack that is shown to not work using CBC is encapsulated by the same classes as above, but tagged with "CBC"
+  at the end of each name.
+  
+- The Utility class provides methods for encryption, decryption, convert longs to byte arrays and vice versa, as well as turning
+  certain objects into byte arrays as well as taking byte arrays and converting them back to said objects.
+  
+- All remaining classes are used to represent different messages in the Needham Schroeder protocol, and are in reference to the 
+  "certain objects" that are listen in the bullet point above.
+ 

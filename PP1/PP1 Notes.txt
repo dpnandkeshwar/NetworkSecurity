@@ -1,0 +1,8 @@
+﻿Hex Strings using ECB:
+* Message 4: 7666d67a414aac320003c2eddceb4954
+* Message 5: 0003c2eddceb49530003c2eddd13c7b4
+
+
+Hex String using CBC:
+* Message 4: 7666d16fc8a1434f0003c2efff9020f6
+* Message 5: ced19565cd90c7ae0003c2efffb895e5
